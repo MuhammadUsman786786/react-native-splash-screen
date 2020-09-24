@@ -33,11 +33,36 @@ RCT_EXPORT_MODULE(SplashScreen)
 }
 
 + (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
-    if (!loadingView) {
+        if (!loadingView) {
         loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
+
+         /**
+         * Dynamic Splash code starts here
+         */        
+        UIImageView *ivSplash =[[UIImageView alloc] initWithFrame:frame];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        NSInteger lastDisplayedIdx = [prefs integerForKey:@"lastDisplayedIdx"];
+
+        [prefs setInteger:(lastDisplayedIdx+1)%14 forKey:@"lastDisplayedIdx"];
+        [prefs synchronize];
+
+        NSString* imgName = @"SplashScreen";
+        
+        if (lastDisplayedIdx != 0) {
+            imgName = [NSString stringWithFormat:@"SplashScreen%ld", (long)lastDisplayedIdx];
+        }
+        UIImage *splashImage = [UIImage imageNamed: imgName];
+
+        ivSplash.image=splashImage;
+        [loadingView addSubview:ivSplash];
+        /**
+         * Dynamic Splash code starts here
+         */
+
     }
     waiting = false;
     
