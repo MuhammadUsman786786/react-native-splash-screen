@@ -6,10 +6,8 @@
  * GitHub:https://github.com/crazycodeboy
  * Email:crazycodeboy@gmail.com
  */
-
 #import "RNSplashScreen.h"
 #import <React/RCTBridge.h>
-
 static bool waiting = true;
 static bool addedJsLoadErrorObserver = false;
 static UIView* loadingView = nil;
@@ -18,14 +16,13 @@ static UIView* loadingView = nil;
 - (dispatch_queue_t)methodQueue{
     return dispatch_get_main_queue();
 }
-RCT_EXPORT_MODULE(SplashScreen)
 
+RCT_EXPORT_MODULE(SplashScreen)
 + (void)show {
     if (!addedJsLoadErrorObserver) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsLoadError:) name:RCTJavaScriptDidFailToLoadNotification object:nil];
         addedJsLoadErrorObserver = true;
     }
-
     while (waiting) {
         NSDate* later = [NSDate dateWithTimeIntervalSinceNow:0.1];
         [[NSRunLoop mainRunLoop] runUntilDate:later];
@@ -33,37 +30,51 @@ RCT_EXPORT_MODULE(SplashScreen)
 }
 
 + (void)showSplash:(NSString*)splashScreen inRootView:(UIView*)rootView {
-        if (!loadingView) {
+    if (!loadingView) {
         loadingView = [[[NSBundle mainBundle] loadNibNamed:splashScreen owner:self options:nil] objectAtIndex:0];
         CGRect frame = rootView.frame;
         frame.origin = CGPointMake(0, 0);
         loadingView.frame = frame;
 
-         /**
-         * Dynamic Splash code starts here
-         */        
+        // logo frame
+        CGFloat frameWidth  = 300.0;
+        CGFloat frameHeight  = 70.0;
+        CGRect logoFrame =  CGRectMake((rootView.bounds.size.width / 2) - (frameWidth / 2), (rootView.bounds.size.height / 2) - (frameHeight / 2), frameWidth, frameHeight);
+        
+        /**
+         * Dynamic Splash code starts he;re
+         */
+        UIView *mainContainer = [[UIView alloc] initWithFrame:frame];
         UIImageView *ivSplash =[[UIImageView alloc] initWithFrame:frame];
+        UIImageView *ivLogo = [[UIImageView alloc] initWithFrame:logoFrame];
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         NSInteger lastDisplayedIdx = [prefs integerForKey:@"lastDisplayedIdx"];
-
         [prefs setInteger:(lastDisplayedIdx+1)%14 forKey:@"lastDisplayedIdx"];
         [prefs synchronize];
-
+        
         NSString* imgName = @"SplashScreen";
+        NSString* logoName = @"analogTextLight";
         
         if (lastDisplayedIdx != 0) {
             imgName = [NSString stringWithFormat:@"SplashScreen%ld", (long)lastDisplayedIdx];
         }
+        
         UIImage *splashImage = [UIImage imageNamed: imgName];
-
+        UIImage *logoImage = [UIImage imageNamed: logoName];
+        
         ivSplash.image=splashImage;
-        [loadingView addSubview:ivSplash];
+        ivLogo.image = logoImage;
+        
+        [mainContainer addSubview:ivSplash];
+        [mainContainer addSubview:ivLogo];
+        
+        [loadingView addSubview:mainContainer];
         /**
          * Dynamic Splash code starts here
          */
-
     }
+
     waiting = false;
     
     [rootView addSubview:loadingView];
@@ -94,5 +105,4 @@ RCT_EXPORT_METHOD(hide) {
 RCT_EXPORT_METHOD(show) {
     [RNSplashScreen show];
 }
-
 @end
