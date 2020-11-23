@@ -16,4 +16,21 @@
   <item name="launch_screen_12" type="layout">@layout/launch_screen_12</item>
   <item name="launch_screen_13" type="layout">@layout/launch_screen_13</item>
   <item name="launch_screen_14" type="layout">@layout/launch_screen_14</item>
+
+  <item name="launch_screen_15" type="layout">@layout/launch_screen_15</item>
+  <item name="launch_screen_16" type="layout">@layout/launch_screen_16</item>
+  <item name="launch_screen_17" type="layout">@layout/launch_screen_17</item>
+  <item name="launch_screen_18" type="layout">@layout/launch_screen_18</item>
+  <item name="launch_screen_19" type="layout">@layout/launch_screen_19</item>
+  <item name="launch_screen_20" type="layout">@layout/launch_screen_20</item>
+  <item name="launch_screen_21" type="layout">@layout/launch_screen_21</item>
+  <item name="launch_screen_22" type="layout">@layout/launch_screen_22</item>
+  <item name="launch_screen_23" type="layout">@layout/launch_screen_23</item>
+  <item name="launch_screen_24" type="layout">@layout/launch_screen_24</item>
+  <item name="launch_screen_25" type="layout">@layout/launch_screen_25</item>
+  <item name="launch_screen_26" type="layout">@layout/launch_screen_26</item>
+  <item name="launch_screen_27" type="layout">@layout/launch_screen_27</item>
+  <item name="launch_screen_28" type="layout">@layout/launch_screen_28</item>
+  <item name="launch_screen_29" type="layout">@layout/launch_screen_29</item>
+  <item name="launch_screen_30" type="layout">@layout/launch_screen_30</item>
 </resources>
