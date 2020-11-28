@@ -50,7 +50,7 @@ RCT_EXPORT_MODULE(SplashScreen)
         
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         NSInteger lastDisplayedIdx = [prefs integerForKey:@"lastDisplayedIdx"];
-        [prefs setInteger:(lastDisplayedIdx+1)%30 forKey:@"lastDisplayedIdx"];
+        [prefs setInteger:(lastDisplayedIdx+1)%29 forKey:@"lastDisplayedIdx"];
         [prefs synchronize];
         
         NSString* imgName = @"SplashScreen";
