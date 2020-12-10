@@ -30,7 +30,4 @@
   <item name="launch_screen_25" type="layout">@layout/launch_screen_25</item>
   <item name="launch_screen_26" type="layout">@layout/launch_screen_26</item>
   <item name="launch_screen_27" type="layout">@layout/launch_screen_27</item>
-  <item name="launch_screen_28" type="layout">@layout/launch_screen_28</item>
-  <item name="launch_screen_29" type="layout">@layout/launch_screen_29</item>
-  <item name="launch_screen_30" type="layout">@layout/launch_screen_30</item>
 </resources>
